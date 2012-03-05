@@ -1,0 +1,3 @@
+content drupalforfirebug chrome/content/drupalforfirebug/ xpcnativewrappers=no
+
+overlay chrome://firebug/content/firebugOverlay.xul         chrome://drupalforfirebug/content/FirebugOverlay.xul
