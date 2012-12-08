@@ -1,22 +1,23 @@
 /* See license.txt for terms of usage */
+
 /*************************************************************************************************/
+
 /* Style applied on the panel node.
    Rule syntax: .panelNode-<ext-id> */
-/* line 7, ../../../sass/drupalforfirebug.scss */
 .panelNode-drupalforfirebug {
-  overflow: hidden;
-  color: green;
-  padding: 10px;
-  font-size: 12px;
-  font-weight: bold;
+    overflow: hidden;
+    color: green;
+    padding: 10px;
+    font-size: 12px;
+    font-weight: bold;
 }
 
 /*************************************************************************************************/
+
 /* Firebug Tracing Console customization. All messages from this example use this color.
    This helps to distinguish logs from those coming from Firebug
    Rule syntax: .DBG_<ext-id>
    See: http://getfirebug.com/wiki/index.php/FBTrace for more details */
-/* line 21, ../../../sass/drupalforfirebug.scss */
 .DBG_DRUPALFORFIREBUG {
   background-color: black;
   color: green;
