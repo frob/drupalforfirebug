@@ -1,12 +1,13 @@
 /* See license.txt for terms of usage */
 
 define([
+    "firebug/lib/lib",
     "firebug/lib/object",
     "firebug/lib/trace",
     "firebug/lib/locale",
     "firebug/lib/domplate"
 ],
-function(Obj, FBTrace, Locale, Domplate) {
+function(FBL, Obj, FBTrace, Locale, Domplate) {
 
 // ********************************************************************************************* //
 // Custom Panel Implementation
@@ -14,7 +15,7 @@ function(Obj, FBTrace, Locale, Domplate) {
 var panelName = "drupalforfirebug";
 
 Firebug.MyPanel = function MyPanel() {};
-Firebug.MyPanel.prototype = Obj.extend(Firebug.Panel,
+Firebug.MyPanel.prototype = FBL.extend(Firebug.Panel,
 {
     name: panelName,
     title: "Drupal",
@@ -42,6 +43,22 @@ Firebug.MyPanel.prototype = Obj.extend(Firebug.Panel,
         Firebug.Panel.destroy.apply(this, arguments);
     },
 
+    /**
+     * Extends toolbar for this panel.
+     */
+    getPanelToolbarButtons: function()
+    {
+        var buttons = [];
+
+        buttons.push({
+            label: "toolbar.button.label",
+            tooltiptext: "toolbar.button.tooltip",
+            command: FBL.bindFixed(this.onHello, this)
+        });
+
+        return buttons;
+    },
+
     show: function(state)
     {
         Firebug.Panel.show.apply(this, arguments);
@@ -57,7 +74,16 @@ Firebug.MyPanel.prototype = Obj.extend(Firebug.Panel,
         this.MyTemplate.render(this.panelNode);
 
         // TODO: Render panel content
+    },
+
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+    // Commands
+
+    onHello: function()
+    {
+        alert(FBL.$STR("toolbar.msg.hello2"));
     }
+
 });
 
 // ********************************************************************************************* //
@@ -88,8 +114,7 @@ Firebug.MyPanel.prototype.MyTemplate = domplate(
 // ********************************************************************************************* //
 // Registration
 
-Firebug.registerPanel(Firebug.MyPanel);
-Firebug.registerStylesheet("chrome://drupalforfirebug/skin/hellobootamd.css");
+Firebug.registerStylesheet("chrome://drupalforfirebug/skin/drupalforfirebug.css");
 
 if (FBTrace.DBG_DRUPALFORFIREBUG)
     FBTrace.sysout("DrupalForFirebug; myPanel.js, stylesheet registered");
@@ -98,3 +123,4 @@ return Firebug.MyPanel;
 
 // ********************************************************************************************* //
 });
+
