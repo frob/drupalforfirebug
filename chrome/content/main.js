@@ -3,10 +3,10 @@
 define([
     "firebug/lib/trace",
     "drupalforfirebug/myPanel",
-    "drupalforfirebug/myModule",
-    "drupalforfirebug/myListener"
+    "drupalforfirebug/myListener",
+    "drupalforfirebug/myModule"
 ],
-function(FBTrace, MyPanel, MyModule, MyListener) {
+function(FBTrace, MyPanel, MyListener, MyModule) {
 
 // ********************************************************************************************* //
 // Documentation
