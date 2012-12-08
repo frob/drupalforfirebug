@@ -102,7 +102,7 @@ Firebug.MyPanel.prototype.MyTemplate = domplate(
 {
     tag:
         SPAN(
-            Locale.$STR("drupalforfirebug.panel.label")
+            Locale.$STR("drupalforfirebug.panel.error")
         ),
 
     render: function(parentNode)
