@@ -39,7 +39,7 @@ var theApp =
         Firebug.unregisterPanel(Firebug.MyPanel);
         Firebug.unregisterModule(Firebug.MyModule);
         Firebug.unregisterUIListener(MyListener);
-        Firebug.unregisterStylesheet("chrome://drupalforfirebug/skin/hellobootamd.css");
+        Firebug.unregisterStylesheet("chrome://drupalforfirebug/skin/drupalforfirebug.css");
         Firebug.unregisterStringBundle("chrome://drupalforfirebug/locale/drupalforfirebug.properties");
 
     }
