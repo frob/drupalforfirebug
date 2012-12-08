@@ -4,8 +4,9 @@ define([
     "firebug/lib/trace",
     "drupalforfirebug/myPanel",
     "drupalforfirebug/myModule",
+    "drupalforfirebug/myListener"
 ],
-function(FBTrace, MyPanel, MyModule) {
+function(FBTrace, MyPanel, MyModule, MyListener) {
 
 // ********************************************************************************************* //
 // Documentation
@@ -22,11 +23,11 @@ var theApp =
     {
         if (FBTrace.DBG_DRUPALFORFIREBUG)
             FBTrace.sysout("DrupalForFirebug; Drupal for Firebug extension initialize");
-
-        // Registration of Firebug panels and modules is made within appropriate files,
-        // but it could be also done here.
-
-        // TODO: Extension initialization
+        
+        Firebug.registerStringBundle("chrome://drupalforfirebug/locale/drupalforfirebug.properties");
+        Firebug.registerModule(MyModule);
+        Firebug.registerUIListener(MyListener);
+        Firebug.registerPanel(MyPanel);
     },
 
     shutdown: function()
@@ -37,10 +38,10 @@ var theApp =
         // Unregister all registered Firebug components
         Firebug.unregisterPanel(Firebug.MyPanel);
         Firebug.unregisterModule(Firebug.MyModule);
+        Firebug.unregisterUIListener(MyListener);
         Firebug.unregisterStylesheet("chrome://drupalforfirebug/skin/hellobootamd.css");
-        Firebug.unregisterStringBundle("chrome://drupalforfirebug/locale/hellobootamd.properties");
+        Firebug.unregisterStringBundle("chrome://drupalforfirebug/locale/drupalforfirebug.properties");
 
-        // TODO: Extension shutdown
     }
 }
 
