@@ -4,10 +4,22 @@
 // XPCOM
 
 var {classes: Cc, interfaces: Ci, utils: Cu} = Components;
+// Cu.import("resource://gre/modules/Services.jsm");
 
 // ********************************************************************************************* //
 // Constants
 
+const BOOTSTRAP_REASONS = [
+    "", // the bootstrap reason is 1 based
+    "APP_STARTUP",
+    "APP_SHUTDOWN",
+    "ADDON_ENABLE",
+    "ADDON_DISABLE",
+    "ADDON_INSTALL",
+    "ADDON_UNINSTALL",
+    "ADDON_UPGRADE",
+    "ADDON_DOWNGRADE"
+];
 // Extension installation path. Set within startup callback.
 var installPath;
 
@@ -64,15 +76,23 @@ function isFirebugLoaded()
  */
 function firebugStartup()
 {
-    // If Firebu isn't loade just bail out, Firebug will execute this method
+    // If Firebug isn't loade just bail out, Firebug will execute this method
     // as soon as it loads.
     if (!isFirebugLoaded())
         return;
 
-    FirebugLoader.registerBootstrapScope(this);
+    try
+    {
+        Cu.import("resource://firebug/loader.js");
+        FirebugLoader.registerBootstrapScope(this);
+        
+        // Load default preferences
+        PrefLoader.loadDefaultPrefs(installPath, "prefs.js");
+    }
+    catch (e)
+    {
+    }
 
-    // Load default preferences
-    PrefLoader.loadDefaultPrefs(installPath, "prefs.js");
 }
 
 /**
@@ -82,6 +102,7 @@ function firebugShutdown()
 {
     try
     {
+        Cu.import("resource://firebug/loader.js");
         FirebugLoader.unregisterBootstrapScope(this);
     }
     catch (e)
