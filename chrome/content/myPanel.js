@@ -5,9 +5,10 @@ define([
     "firebug/lib/object",
     "firebug/lib/trace",
     "firebug/lib/locale",
-    "firebug/lib/domplate"
+    "firebug/lib/domplate",
+    "drupalforfirebug/objects/content"
 ],
-function(FBL, Obj, FBTrace, Locale, Domplate) {
+function(FBL, Obj, FBTrace, Locale, Domplate, Content) {
 
 // ********************************************************************************************* //
 // Custom Panel Implementation
@@ -55,6 +56,13 @@ Firebug.MyPanel.prototype = FBL.extend(Firebug.Panel,
             tooltiptext: "toolbar.button.tooltip",
             command: FBL.bindFixed(this.onHello, this)
         });
+        
+        buttons.push({
+            label: "toolbar.button.label2",
+            tooltiptext: "toolbar.button.tooltip2",
+            command: FBL.bindFixed(this.onHello, this)
+        });
+        
 
         return buttons;
     },
