@@ -21,7 +21,7 @@ Firebug.MyModule = Obj.extend(Firebug.Module,
         // TODO: Module initialization (there is one module instance per browser window)
 
         if (FBTrace.DBG_DRUPALFORFIREBUG)
-            FBTrace.sysout("DrupalForFirebug; MyModule.initialize");
+            FBTrace.sysout("DrupalForFirebug; MyModule.initialize", this);
         
 
         // The main Firebug toolbar can't be extended from a panel object since it's
