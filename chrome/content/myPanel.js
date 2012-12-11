@@ -17,14 +17,14 @@ function(FBL, Obj, FBTrace, Locale, Domplate, Connection) {
   {
     name: panelName,
     title: "Drupal",
-    connection: Connection,
+    buttons: Connection.buttons,
     
     initialize: function() {
         Firebug.Panel.initialize.apply(this, arguments);
         Firebug.registerModule(Connection);
   
         if (FBTrace.DBG_DRUPALFORFIREBUG)
-          FBTrace.sysout("DrupalForFirebug; MyPanel.initialize");
+          FBTrace.sysout("DrupalForFirebug; MyPanel.initialize", this);
   
         this.refresh();
     },
@@ -41,21 +41,14 @@ function(FBL, Obj, FBTrace, Locale, Domplate, Connection) {
        * Extends toolbar for this panel.
        */
     getPanelToolbarButtons: function() {
-      var buttons = [];
-  
-      buttons.push({
-        label: "toolbar.button.label",
-        tooltiptext: "toolbar.button.tooltip",
-        command: FBL.bindFixed(this.onHello, this)
-      });
-          
-      buttons.push({
-        label: "toolbar.button.label2",
-        tooltiptext: "toolbar.button.tooltip2",
-        command: FBL.bindFixed(this.onHello, this)
-      });
-          
-  
+      var buttons = this.buttons;
+      
+      for (var i=0; i<this.buttons.length; i++) {
+        hook = this.buttons[i].hook;
+        this.buttons[i].command =  FBL.bindFixed(Connection.onButton, Connection, hook, this);
+      }
+      
+      FBTrace.sysout("DrupalForFirebug; MyPanel.buttons", FBL);
       return buttons;
     },
   
@@ -69,13 +62,11 @@ function(FBL, Obj, FBTrace, Locale, Domplate, Connection) {
     refresh: function() {
       // Render panel content. The HTML result of the template corresponds to: 
       //this.panelNode.innerHTML = "<span>" + Locale.$STR("hellobootamd.panel.label") + "</span>";
-      this.MyTemplate.render(this.panelNode);
+      //this.MyTemplate.render(this.panelNode);
+      filterCategory = Connection.currentButton;
+      var drupal_firebug_content = content.document.getElementById('drupalforfirebug_' + filterCategory).innerHTML;
+      this.panelNode.innerHTML = drupal_firebug_content;
       
-      // TODO: Render panel content
-    },
-
-    onButton: function() {
-      alert(FBL.$STR("toolbar.msg.hello2"));
     }
   
   });

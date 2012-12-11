@@ -3,8 +3,7 @@
    Rule syntax: .panelNode-<ext-id> */
 /* line 4, ../../../sass/drupalforfirebug.scss */
 .panelNode-drupalforfirebug {
-  overflow: hidden;
-  color: green;
+  overflow: scroll;
   padding: 10px;
   font-size: 12px;
   font-weight: bold;

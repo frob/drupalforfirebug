@@ -148,7 +148,7 @@ function firebugFrameLoad(Firebug)
     // * DrupalForFirebug; is unique prefix of all messages that should be customized.
     // * DBG_DRUPALFORFIREBUG is a class name with style defined in the specified stylesheet.
     Firebug.registerTracePrefix("DrupalForFirebug;", "DBG_DRUPALFORFIREBUG", true,
-        "chrome://drupalforfirebug/skin/drupalforfirebug.css");
+        "chrome://drupalforfirebug/skin/trace.css");
 
     // The registration process will automatically look for 'main' module and load it.
     // The is the same what happens in a XUL overlay applied on:
