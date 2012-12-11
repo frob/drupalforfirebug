@@ -29,7 +29,7 @@
 // The <ext-name> should come from chrome.manifest: resource hellobootamd chrome/
 
 Firebug.registerTracePrefix("DrupalForFirebug;", "DBG_DRUPALFORFIREBUG", true,
-    "chrome://drupalforfirebug/skin/trace.css");
+    "chrome://drupalforfirebug/skin/drupalforfirebug.css");
 
 // The registration process will automatically look for 'main' module and load it.
 // TODO: Replace with your extension credentials.
