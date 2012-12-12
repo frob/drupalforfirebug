@@ -66,7 +66,10 @@ Firebug.Connection = Obj.extend(Firebug.Module, {
   onButton: function(hook, panel) {
     this.currentButton = hook;
     panel.refresh();
-    FBTrace.sysout("DrupalForFirebug; onButton", this);
+    
+    if (FBTrace.DBG_DRUPALFORFIREBUG) {
+      FBTrace.sysout("DrupalForFirebug; onButton", this);
+    }
   }
 
 });

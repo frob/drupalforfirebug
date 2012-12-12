@@ -22,10 +22,11 @@ function(FBL, Obj, FBTrace, Locale, Domplate, Connection) {
     initialize: function() {
         Firebug.Panel.initialize.apply(this, arguments);
         Firebug.registerModule(Connection);
-  
+        
         if (FBTrace.DBG_DRUPALFORFIREBUG)
           FBTrace.sysout("DrupalForFirebug; MyPanel.initialize", this);
-  
+        
+        
         this.refresh();
     },
   
@@ -56,7 +57,7 @@ function(FBL, Obj, FBTrace, Locale, Domplate, Connection) {
       Firebug.Panel.show.apply(this, arguments);
     
       if (FBTrace.DBG_DRUPALFORFIREBUG)
-        FBTrace.sysout("DrupalForFirebug; MyPanel.show");
+        FBTrace.sysout("DrupalForFirebug; MyPanel.show", this);
     },
       
     refresh: function() {
@@ -64,14 +65,19 @@ function(FBL, Obj, FBTrace, Locale, Domplate, Connection) {
       //this.panelNode.innerHTML = "<span>" + Locale.$STR("hellobootamd.panel.label") + "</span>";
       //this.MyTemplate.render(this.panelNode);
       filterCategory = Connection.currentButton;
-      var drupal_firebug_content = content.document.getElementById('drupalforfirebug_' + filterCategory).innerHTML;
-      this.panelNode.innerHTML = drupal_firebug_content;
+      var drupal_firebug_content = content.document.getElementById('drupalforfirebug_' + filterCategory).cloneNode(true);
+      hidden = drupal_firebug_content.getElementsByClassName("content");
+      for(var i = 0; i < hidden.length; i++) {
+        hidden[i].removeAttribute("style");
+      }
+      this.panelNode.innerHTML = drupal_firebug_content.innerHTML;
       
+      if (FBTrace.DBG_DRUPALFORFIREBUG)
+        FBTrace.sysout("DrupalForFirebug; MyPanel.refresh", context);
     }
-  
   });
   
-  // ********************************************************************************************* //
+  // ********************************************************************** //
   // Panel UI (Domplate)
   
   // Register locales before the following template definition.
