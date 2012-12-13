@@ -22,9 +22,6 @@ var MyListener = {
     });
   },
 
-  // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
-  // Commands
-
   onHello: function() {
     alert(FBL.$STR("toolbar.msg.hello1"));
   }

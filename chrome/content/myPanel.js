@@ -64,13 +64,13 @@ function(FBL, Obj, FBTrace, Locale, Domplate, Connection) {
       // Render panel content. The HTML result of the template corresponds to: 
       //this.panelNode.innerHTML = "<span>" + Locale.$STR("hellobootamd.panel.label") + "</span>";
       //this.MyTemplate.render(this.panelNode);
-      filterCategory = Connection.currentButton;
-      var drupal_firebug_content = content.document.getElementById('drupalforfirebug_' + filterCategory).cloneNode(true);
-      hidden = drupal_firebug_content.getElementsByClassName("content");
-      for(var i = 0; i < hidden.length; i++) {
-        hidden[i].removeAttribute("style");
-      }
-      this.panelNode.innerHTML = drupal_firebug_content.innerHTML;
+      // filterCategory = Connection.currentButton;
+      // var drupal_firebug_content = content.document.getElementById('drupalforfirebug_' + filterCategory).cloneNode(true);
+      // hidden = drupal_firebug_content.getElementsByClassName("content");
+      // for(var i = 0; i < hidden.length; i++) {
+      //   hidden[i].removeAttribute("style");
+      // }
+      this.panelNode.innerHTML = Connection.panel;// drupal_firebug_content.innerHTML;
       
       if (FBTrace.DBG_DRUPALFORFIREBUG)
         FBTrace.sysout("DrupalForFirebug; MyPanel.refresh", context);

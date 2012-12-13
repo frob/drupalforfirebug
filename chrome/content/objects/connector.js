@@ -21,7 +21,7 @@ function(Obj, FBTrace) {
   }, {
     label:"Users",
     tooltiptext: "Tool Tip",
-    hook: "hook_nodeapi"
+    hook: "hook_user"
   }, {
     label:"Nodes",
     tooltiptext: "Tool Tip",
@@ -69,18 +69,29 @@ Firebug.Connection = Obj.extend(Firebug.Module, {
     }
 
     if (FBTrace.DBG_DRUPALFORFIREBUG) {
-      FBTrace.sysout("DrupalForFirebug; Connection.shutdown");
+      FBTrace.sysout("DrupalForFirebug; DrupalConnection.shutdown");
     }
         
   },
 
+  changePanel: function(hook) {
+    filterCategory = this.currentButton;
+    
+    // get the currently requested content
+    var drupal_firebug_content = content.document.getElementById('drupalforfirebug_' + filterCategory).cloneNode(true);
+    hidden = drupal_firebug_content.getElementsByClassName("content");
+    // remove the style="hidded" from the .content elements.
+    for(var i = 0; i < hidden.length; i++) {
+      hidden[i].removeAttribute("style");
+    }
+    
+    this.panel = drupal_firebug_content.innerHTML;
+  },
+
   onButton: function(hook, panel) {
     this.currentButton = hook;
+    this.changePanel(hook);
     panel.refresh();
-    
-    if (FBTrace.DBG_DRUPALFORFIREBUG) {
-      FBTrace.sysout("DrupalForFirebug; onButton", this);
-    }
   }
 
 });
