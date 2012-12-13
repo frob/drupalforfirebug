@@ -4,7 +4,7 @@ define([
 ],
 function(Obj, FBTrace) {
   var DFFapi = "legacy";
-  
+
   var drupalButtons = [];
   drupalButtons.push({
     label: "General",
@@ -43,15 +43,26 @@ Firebug.Connection = Obj.extend(Firebug.Module, {
   
   initialize: function(owner) {
     Firebug.Module.initialize.apply(this, arguments);
+    
+    this.api = Components.classes["@mozilla.org/preferences-service;1"]
+      .getService(Components.interfaces.nsIPrefService)
+      .getBranch("extensions.drupalforfirebug.");
+
+    this.api.QueryInterface(Components.interfaces.nsIPrefBranch2);
+    this.api.addObserver("", this, false);
+
+    this.api = this.prefs.getCharPref("API").toUpperCase();
+
+    this.panels = ['Stuff'];
+    
     if (FBTrace.DBG_DRUPALFORFIREBUG) {
       FBTrace.sysout("DrupalForFirebug; DrupalConnection.initialize", this);
     }
-    
-    this.panels = ['Stuff'];
   },
 
   shutdown: function() {
     Firebug.Module.shutdown.apply(this, arguments);
+    this.api.removeObserver("", this);
 
     for (var i=0; i<this.buttons.length; i++) {
       Firebug.chrome.removeToolbarButton(this.buttons[i]);
