@@ -3,24 +3,24 @@ define([
     "firebug/lib/object",
     "firebug/lib/trace",
     "firebug/lib/locale",
-    "firebug/lib/domplate",
     "drupalforfirebug/objects/connector"
 ],
-  function(FBL, Obj, FBTrace, Locale, Domplate, Connection) {
-    
+  function(FBL, Obj, FBTrace, Locale, Connection) {
+    Firebug.registerStringBundle("chrome://drupalforfirebug/locale/drupalforfirebug.properties");
     var panelName = "drupalforfirebug";
+    var title = Locale.$STR("drupalforfirebug.toolbar.button.label")
     
     Firebug.DrupalPanel = function DrupalPanel() {};
     Firebug.DrupalPanel.prototype = FBL.extend(Firebug.Panel, {
       name: panelName,
-      title: "Drupal",
+      title: title,
       buttons: Connection.buttons,
       
       initialize: function() {
           Firebug.Panel.initialize.apply(this, arguments);
           Firebug.registerModule(Connection);
           
-          this.refresh();
+          this.panelNode.innerHTML = Connection.panel;
           
           if (FBTrace.DBG_DRUPALFORFIREBUG) {
             FBTrace.sysout("DrupalForFirebug; DrupalPanel.initialize", this);
@@ -52,8 +52,9 @@ define([
       show: function(state) {
         Firebug.Panel.show.apply(this, arguments);
       
-        if (FBTrace.DBG_DRUPALFORFIREBUG)
-          FBTrace.sysout("DrupalForFirebug; DrupalPanel.show", this);
+        if (FBTrace.DBG_DRUPALFORFIREBUG) {
+          FBTrace.sysout("DrupalForFirebug; DrupalPanel.show", state);
+        }
       },
         
       refresh: function() {
@@ -67,40 +68,6 @@ define([
         }
       }
     });
-    
-    // ********************************************************************** //
-    // Panel UI (Domplate)
-    
-    // Register locales before the following template definition.
-    Firebug.registerStringBundle("chrome://drupalforfirebug/locale/drupalforfirebug.properties");
-    
-    /**
-     * Domplate template used to render panel's content. Note that the template uses
-     * localized strings and so, Firebug.registerStringBundle for the appropriate
-     * locale file must be already executed at this moment.
-     */
-    with (Domplate) {
-    Firebug.DrupalPanel.prototype.MyTemplate = domplate(
-    {
-        tag:
-            SPAN(
-                Locale.$STR("drupalforfirebug.panel.error")
-            ),
-    
-        render: function(parentNode)
-        {
-            this.tag.replace({}, parentNode);
-        }
-    })}
-    
-    // ********************************************************************************************* //
-    // Registration
-    
-    Firebug.registerStylesheet("chrome://drupalforfirebug/skin/drupalforfirebug.css");
-    
-    if (FBTrace.DBG_DRUPALFORFIREBUG) {
-      FBTrace.sysout("DrupalForFirebug; DrupalPanel.js, stylesheet registered chrome://drupalforfirebug/skin/drupalforfirebug.css");
-    }
   
   return Firebug.DrupalPanel;
 });

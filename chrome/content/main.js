@@ -20,6 +20,7 @@ define([
   var theApp = { 
     initialize: function() {
       
+      Firebug.registerStylesheet("chrome://drupalforfirebug/skin/drupalforfirebug.css");
       Firebug.registerStringBundle("chrome://drupalforfirebug/locale/drupalforfirebug.properties");
       // Firebug.registerModule(MyModule);
       // Firebug.registerUIListener(MyListener);
