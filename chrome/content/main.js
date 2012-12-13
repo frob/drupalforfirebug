@@ -1,8 +1,6 @@
-/* See license.txt for terms of usage */
-
 define([
   "firebug/lib/trace",
-  "drupalforfirebug/myPanel",
+  "drupalforfirebug/MyPanel",
   "drupalforfirebug/myListener",
   "drupalforfirebug/myModule"
 ],
@@ -18,16 +16,17 @@ define([
   // ********************************************************************************************* //
   // The application/extension object
   
-  var DrupalForFirebug = { 
+  var theApp = { 
     initialize: function() {
-      if (FBTrace.DBG_DRUPALFORFIREBUG) {
-        FBTrace.sysout("DrupalForFirebug; Drupal for Firebug extension initialize");
-      }
       
       Firebug.registerStringBundle("chrome://drupalforfirebug/locale/drupalforfirebug.properties");
       // Firebug.registerModule(MyModule);
       // Firebug.registerUIListener(MyListener);
       Firebug.registerPanel(MyPanel);
+      
+      if (FBTrace.DBG_DRUPALFORFIREBUG) {
+        FBTrace.sysout("DrupalForFirebug; Drupal for Firebug extension initialize");
+      }
     },
 
     shutdown: function() {
@@ -36,13 +35,13 @@ define([
       }
               
       // Unregister all registered Firebug components
-      Firebug.unregisterPanel(Firebug.MyPanel);
       // Firebug.unregisterModule(Firebug.MyModule);
       // Firebug.unregisterUIListener(MyListener);
+      Firebug.unregisterPanel(Firebug.MylPanel);
       Firebug.unregisterStylesheet("chrome://drupalforfirebug/skin/drupalforfirebug.css");
       Firebug.unregisterStringBundle("chrome://drupalforfirebug/locale/drupalforfirebug.properties");
 
       }
   }
-  return DrupalForFirebug;
+  return theApp;
 });
