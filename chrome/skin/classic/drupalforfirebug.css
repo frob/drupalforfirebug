@@ -2,9 +2,8 @@
 
    Rule syntax: .panelNode-<ext-id> */
 /* line 4, ../../../sass/drupalforfirebug.scss */
-.panelNode-drupalforfirebug {
-  overflow: scroll;
-  padding: 10px;
-  font-size: 12px;
-  font-weight: bold;
+.panelNode-drupalforfirebug, .panelNode-drupalforfirebug iframe html body {
+  padding: .5em 1ex;
+  font-size: 1.25em;
+  font-family: Helvetica;
 }

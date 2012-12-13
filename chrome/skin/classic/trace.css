@@ -5,6 +5,11 @@
    See: http://getfirebug.com/wiki/index.php/FBTrace for more details */
 /* line 6, ../../../sass/trace.scss */
 .DBG_DRUPALFORFIREBUG {
-  background-color: black;
-  color: green;
+  background-color: #102C17;
+  color: #61ce3c;
+}
+
+/* line 11, ../../../sass/trace.scss */
+.DBG_DRUPALFORFIREBUG:hover {
+  color: #102c17;
 }

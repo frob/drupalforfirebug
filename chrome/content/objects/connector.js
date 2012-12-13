@@ -17,31 +17,31 @@ define([
     var drupalButtons = [];
     drupalButtons.push({
       label: "General",
-      tooltiptext: "Tool Tip",
+      tooltiptext: "These are messages that can be placed anywhere in the code and are displayed in the Drupal for Firebug console window. They work in much the same was as drupal_set_message().",
       hook: "general"
     }, {
       label:"SQL",
-      tooltiptext: "Tool Tip",
+      tooltiptext: "This is a Drupal for Firebug display of the Devel module query log.",
       hook: "sql"
     }, {
       label:"Forms",
-      tooltiptext: "Tool Tip",
+      tooltiptext: "All forms that are processed by hook_form_alter() are displayed here. Any changes(Yellow), additions(Green), or deletions(Red) are appropriately color coordinated in the output.",
       hook: "hook_form_alter"
     }, {
       label:"Users",
-      tooltiptext: "Tool Tip",
+      tooltiptext: "The user records and associated $op performed on each one by hook_user().",
       hook: "hook_user"
     }, {
       label:"Nodes",
-      tooltiptext: "Tool Tip",
+      tooltiptext: "All nodes that are processed by hook_nodeapi() are displayed here along with the $op applied to them.",
       hook: "hook_nodeapi"
     }, {
       label:"Views",
-      tooltiptext: "Tool Tip",
+      tooltiptext: "Each view that is loaded or themed is displayed with any changes(Yellow), additions(Green), or deletions(Red) are appropriately color coordinated in the output.",
       hook: "hook_views"
     }, {
       label:"Execute PHP",
-      tooltiptext: "Tool Tip",
+      tooltiptext: "This tab allows PHP code to be executing in much the same was as the \"Execute PHP\" block works in the Devel module. Users must be given special permissions to use this feature.",
       hook: "php"
     });
     

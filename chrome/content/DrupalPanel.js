@@ -51,6 +51,9 @@ define([
     
       show: function(state) {
         Firebug.Panel.show.apply(this, arguments);
+        
+        Connection.changePanel(Connection.currentButton);
+        this.refresh();
       
         if (FBTrace.DBG_DRUPALFORFIREBUG) {
           FBTrace.sysout("DrupalForFirebug; DrupalPanel.show", state);
