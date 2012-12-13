@@ -153,7 +153,7 @@ function firebugFrameLoad(Firebug)
     // The registration process will automatically look for 'main' module and load it.
     // The is the same what happens in a XUL overlay applied on:
     // chrome://firebug/content/firebugOverlay.xul
-    var config = {id: "drupalforfirebug@drupal.org"};
+    var config = {id: "DrupalForFirebugg@drupal.org"};
     Firebug.registerExtension("drupalforfirebug", config);
 }
 
