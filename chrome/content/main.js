@@ -1,10 +1,11 @@
 define([
   "firebug/lib/trace",
-  "drupalforfirebug/MyPanel",
+  "drupalforfirebug/DrupalPanel",
   "drupalforfirebug/myListener",
   "drupalforfirebug/myModule"
 ],
-  function(FBTrace, MyPanel, MyListener, MyModule) {
+  // Currently only FBTrace and DrupalPanel are in use.
+  function(FBTrace, DrupalPanel, MyListener, MyModule) {
   // ********************************************************************************************* //
   // Documentation
   
@@ -22,7 +23,7 @@ define([
       Firebug.registerStringBundle("chrome://drupalforfirebug/locale/drupalforfirebug.properties");
       // Firebug.registerModule(MyModule);
       // Firebug.registerUIListener(MyListener);
-      Firebug.registerPanel(MyPanel);
+      Firebug.registerPanel(DrupalPanel);
       
       if (FBTrace.DBG_DRUPALFORFIREBUG) {
         FBTrace.sysout("DrupalForFirebug; Drupal for Firebug extension initialize");
@@ -37,7 +38,7 @@ define([
       // Unregister all registered Firebug components
       // Firebug.unregisterModule(Firebug.MyModule);
       // Firebug.unregisterUIListener(MyListener);
-      Firebug.unregisterPanel(Firebug.MylPanel);
+      Firebug.unregisterPanel(Firebug.DrupalPanel);
       Firebug.unregisterStylesheet("chrome://drupalforfirebug/skin/drupalforfirebug.css");
       Firebug.unregisterStringBundle("chrome://drupalforfirebug/locale/drupalforfirebug.properties");
 

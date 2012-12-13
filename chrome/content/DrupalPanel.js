@@ -10,8 +10,8 @@ define([
     
     var panelName = "drupalforfirebug";
     
-    Firebug.MyPanel = function MyPanel() {};
-    Firebug.MyPanel.prototype = FBL.extend(Firebug.Panel, {
+    Firebug.DrupalPanel = function DrupalPanel() {};
+    Firebug.DrupalPanel.prototype = FBL.extend(Firebug.Panel, {
       name: panelName,
       title: "Drupal",
       buttons: Connection.buttons,
@@ -23,7 +23,7 @@ define([
           this.refresh();
           
           if (FBTrace.DBG_DRUPALFORFIREBUG) {
-            FBTrace.sysout("DrupalForFirebug; MyPanel.initialize", this);
+            FBTrace.sysout("DrupalForFirebug; DrupalPanel.initialize", this);
           }
       },
     
@@ -31,7 +31,7 @@ define([
         Firebug.unregisterModule(Connection);
         Firebug.Panel.destroy.apply(this, arguments);
         if (FBTrace.DBG_DRUPALFORFIREBUG) {
-          FBTrace.sysout("DrupalForFirebug; MyPanel.destroy");
+          FBTrace.sysout("DrupalForFirebug; DrupalPanel.destroy");
         }
       },
 
@@ -53,23 +53,17 @@ define([
         Firebug.Panel.show.apply(this, arguments);
       
         if (FBTrace.DBG_DRUPALFORFIREBUG)
-          FBTrace.sysout("DrupalForFirebug; MyPanel.show", this);
+          FBTrace.sysout("DrupalForFirebug; DrupalPanel.show", this);
       },
         
       refresh: function() {
         // Render panel content. The HTML result of the template corresponds to: 
         // this.panelNode.innerHTML = "<span>" + Locale.$STR("hellobootamd.panel.label") + "</span>";
         // this.MyTemplate.render(this.panelNode);
-        // filterCategory = Connection.currentButton;
-        // var drupal_firebug_content = content.document.getElementById('drupalforfirebug_' + filterCategory).cloneNode(true);
-        // hidden = drupal_firebug_content.getElementsByClassName("content");
-        // for(var i = 0; i < hidden.length; i++) {
-        //   hidden[i].removeAttribute("style");
-        // }
         this.panelNode.innerHTML = Connection.panel;
         
         if (FBTrace.DBG_DRUPALFORFIREBUG) {
-          FBTrace.sysout("DrupalForFirebug; MyPanel.refresh", context);
+          FBTrace.sysout("DrupalForFirebug; DrupalPanel.refresh", context);
         }
       }
     });
@@ -86,7 +80,7 @@ define([
      * locale file must be already executed at this moment.
      */
     with (Domplate) {
-    Firebug.MyPanel.prototype.MyTemplate = domplate(
+    Firebug.DrupalPanel.prototype.MyTemplate = domplate(
     {
         tag:
             SPAN(
@@ -108,6 +102,6 @@ define([
       FBTrace.sysout("DrupalForFirebug; DrupalPanel.js, stylesheet registered chrome://drupalforfirebug/skin/drupalforfirebug.css");
     }
   
-  return Firebug.MyPanel;
+  return Firebug.DrupalPanel;
 });
 
