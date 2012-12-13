@@ -154,7 +154,7 @@ function firebugFrameLoad(Firebug)
     // The is the same what happens in a XUL overlay applied on:
     // chrome://firebug/content/firebugOverlay.xul
     var config = {id: "DrupalForFirebug@drupal.org"};
-    Firebug.registerExtension("drupalforfirebug", config);
+    Firebug.registerExtension("DrupalForFirebug", config);
 }
 
 function firebugFrameUnload(Firebug)
@@ -162,7 +162,7 @@ function firebugFrameUnload(Firebug)
     if (!Firebug.isInitialized)
         return;
 
-    Firebug.unregisterExtension("drupalforfirebug");
+    Firebug.unregisterExtension("DrupalForFirebug");
     Firebug.unregisterTracePrefix("DrupalForFirebug;");
 }
 

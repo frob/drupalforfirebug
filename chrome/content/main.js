@@ -1,8 +1,8 @@
 define([
   "firebug/lib/trace",
-  "drupalforfirebug/DrupalPanel",
-  "drupalforfirebug/myListener",
-  "drupalforfirebug/myModule"
+  "DrupalForFirebug/DrupalPanel",
+  "DrupalForFirebug/myListener",
+  "DrupalForFirebug/myModule"
 ],
   // Currently only FBTrace and DrupalPanel are in use.
   function(FBTrace, DrupalPanel, MyListener, MyModule) {

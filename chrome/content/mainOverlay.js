@@ -33,7 +33,7 @@ Firebug.registerTracePrefix("DrupalForFirebug;", "DBG_DRUPALFORFIREBUG", true,
 
 // The registration process will automatically look for 'main' module and load it.
 // TODO: Replace with your extension credentials.
-var config = {id: "drupalforfirebug@drupal.org"};
-Firebug.registerExtension("drupalforfirebug", config);
+var config = {id: "DrupalForFirebug@drupal.org"};
+Firebug.registerExtension("DrupalForFirebug", config);
 
 // ********************************************************************************************* //

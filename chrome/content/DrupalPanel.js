@@ -3,7 +3,7 @@ define([
     "firebug/lib/object",
     "firebug/lib/trace",
     "firebug/lib/locale",
-    "drupalforfirebug/objects/connector"
+    "DrupalForFirebug/objects/connector"
 ],
   function(FBL, Obj, FBTrace, Locale, Connection) {
     Firebug.registerStringBundle("chrome://drupalforfirebug/locale/drupalforfirebug.properties");
