@@ -1,8 +1,11 @@
+# the content declairation should be switch depending on if extention is 
+# being deployed :
 content   drupalforfirebug chrome/content/
+# content   drupalforfirebug jar:chrome/drupalforfirebug.jar!/content/
 skin      drupalforfirebug classic/1.0   chrome/skin/classic/
 locale    drupalforfirebug en-US         chrome/locale/en-US/
 
 # The extension is bootstrapped in this scenario
-# To switch to XUL overlay based extension change 'em:bootstrap' to false in install.rdf
-# and use the following line:
+# To switch to XUL overlay based extension change 'em:bootstrap' to false in
+# install.rdf and use the following line:
 #overlay chrome://firebug/content/firebugOverlay.xul         chrome://drupalforfirebug/content/mainOverlay.xul
