@@ -87,26 +87,40 @@ define([
   
     changePanel: function(hook) {
       filterCategory = this.currentButton;
+      var parserUtils = Components.classes["@mozilla.org/parserutils;1"]
+                        .getService(Components.interfaces.nsIParserUtils);
       
       // get the currently requested content
       var drupalFirebugContent = content.document.getElementById('drupalforfirebug_' + filterCategory).cloneNode(true);
-      hidden = drupalFirebugContent.getElementsByClassName("content");
+      //hidden = drupalFirebugContent.getElementsByClassName("content");
       // remove the style="hidded" from the .content elements.
-      for(var i = 0; i < hidden.length; i++) {
-        hidden[i].removeAttribute("style");
-      }
+      //for(var i = 0; i < hidden.length; i++) {
+      //   hidden[i].removeAttribute("style");
+      //}
+      
       if(drupalFirebugContent) {
-        this.panel = drupalFirebugContent.innerHTML;
+        this.panel = parserUtils.sanitize(drupalFirebugContent.innerHTML, 0);
       }
       else {
         this.panel = error;
       }
+      
+      if (FBTrace.DBG_DRUPALFORFIREBUG) {
+        FBTrace.sysout("DrupalForFirebug; DrupalConnection.changePanel", parserUtils);
+      }
+      
     },
   
     onButton: function(hook, panel) {
       this.currentButton = hook;
       this.changePanel(hook);
+      
+      if (FBTrace.DBG_DRUPALFORFIREBUG) {
+        FBTrace.sysout("DrupalForFirebug; DrupalConnection.onButton", this);
+      }
+      
       panel.refresh();
+      
     }
   
   });
