@@ -93,7 +93,7 @@ define([
       // get the currently requested content
       var drupalFirebugContent = false;
       if (content.document.getElementById('drupalforfirebug_' + filterCategory) != null ) {
-        drupalFirebugContent = element.cloneNode(true);
+        drupalFirebugContent = content.document.getElementById('drupalforfirebug_' + filterCategory).cloneNode(true);
       }
 
       //hidden = drupalFirebugContent.getElementsByClassName("content");
