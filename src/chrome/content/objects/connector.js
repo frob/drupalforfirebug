@@ -13,7 +13,7 @@ define([
     if(drupalSite) {
       defaultContent = drupalSite.innerHTML;
     }
-  
+
     var drupalButtons = [];
     drupalButtons.push({
       label: "General",
@@ -44,93 +44,97 @@ define([
       tooltiptext: "This tab allows PHP code to be executing in much the same was as the \"Execute PHP\" block works in the Devel module. Users must be given special permissions to use this feature.",
       hook: "php"
     });
-    
+
   Firebug.Connection = Obj.extend(Firebug.Module, {
     buttons: drupalButtons,
     api: DFFapi,
     currentButton: "general",
     panel: defaultContent,
-    
+
     initialize: function(owner) {
       Firebug.Module.initialize.apply(this, arguments);
       Firebug.registerStringBundle("chrome://drupalforfirebug/locale/drupalforfirebug.properties");
-      
+
       this.api = Components.classes["@mozilla.org/preferences-service;1"]
         .getService(Components.interfaces.nsIPrefService)
         .getBranch("extensions.drupalforfirebug.");
-  
+
       this.api.QueryInterface(Components.interfaces.nsIPrefBranch2);
       this.api.addObserver("", this, false);
-  
+
       this.api = this.api.getCharPref("API").toUpperCase();
-  
+
       this.MyTemplate.render(this.panel);;
-      
+
       if (FBTrace.DBG_DRUPALFORFIREBUG) {
         FBTrace.sysout("DrupalForFirebug; DrupalConnection.initialize", this);
       }
     },
-  
+
     shutdown: function() {
       Firebug.Module.shutdown.apply(this, arguments);
       this.api.removeObserver("", this);
-  
+
       for (var i=0; i<this.buttons.length; i++) {
         Firebug.chrome.removeToolbarButton(this.buttons[i]);
       }
-  
+
       if (FBTrace.DBG_DRUPALFORFIREBUG) {
         FBTrace.sysout("DrupalForFirebug; DrupalConnection.shutdown");
       }
-          
+
     },
-  
+
     changePanel: function(hook) {
       filterCategory = this.currentButton;
       var parserUtils = Components.classes["@mozilla.org/parserutils;1"]
                         .getService(Components.interfaces.nsIParserUtils);
-      
+
       // get the currently requested content
-      var drupalFirebugContent = content.document.getElementById('drupalforfirebug_' + filterCategory).cloneNode(true);
+      var drupalFirebugContent = false;
+      if (content.document.getElementById('drupalforfirebug_' + filterCategory) != null ) {
+        drupalFirebugContent = element.cloneNode(true);
+      }
+
       //hidden = drupalFirebugContent.getElementsByClassName("content");
       // remove the style="hidded" from the .content elements.
       //for(var i = 0; i < hidden.length; i++) {
       //   hidden[i].removeAttribute("style");
       //}
-      
+
       if(drupalFirebugContent) {
         this.panel = parserUtils.sanitize(drupalFirebugContent.innerHTML, 0);
       }
       else {
         this.panel = error;
       }
-      
+
       if (FBTrace.DBG_DRUPALFORFIREBUG) {
         FBTrace.sysout("DrupalForFirebug; DrupalConnection.changePanel", parserUtils);
       }
-      
+
     },
-  
+
     onButton: function(hook, panel) {
       this.currentButton = hook;
       this.changePanel(hook);
-      
+
       if (FBTrace.DBG_DRUPALFORFIREBUG) {
         FBTrace.sysout("DrupalForFirebug; DrupalConnection.onButton", this);
       }
-      
+
       panel.refresh();
-      
+
     }
-  
+
   });
-  
+
   // ********************************************************************** //
   // Panel UI (Domplate)
-  
+
   // Register locales before the following template definition.
   Firebug.registerStringBundle("chrome://drupalforfirebug/locale/drupalforfirebug.properties");
-  
+
   /**
    * Domplate template used to render panel's content. Note that the template uses
    * localized strings and so, Firebug.registerStringBundle for the appropriate
