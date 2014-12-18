@@ -1,0 +1,62 @@
+{
+  "name": "DrupalForFirebug",
+  "title": "DrupalForFirebug",
+  "description": "Drupal for Firebug Extension. Original author: Matt Cheney (populist).",
+  "version": "2.2",
+  "homepage": "http://drupal.org/project/DrupalForFirebug",
+  "author": {
+    "name": "Frank Anderson",
+    "url": "https://www.drupal.org/user/249517"
+  },
+  "maintainers": [
+    {
+      "name": "Frank Anderson (frob)",
+      "url": "https://www.drupal.org/user/249517"
+    },
+    {
+      "name": "Matt Cheney (populist)",
+      "url": "https://www.drupal.org/user/58600"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:frob/drupalforfirebug.git"
+  },
+  "bugs": "https://github.com/frob/drupalforfirebug/issues",
+  "licenses": [
+    {
+      "type": "GPL-2.0",
+      "url": "https://github.com/frob/drupalforfirebug/blob/2.x/LICENSE-GPL-2.0"
+    }
+  ],
+  "keywords": ["drupal", "development"],
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "dependencies": {
+    "clean-css": "2.0.8",
+    "grunt": "0.4.2",
+    "grunt-contrib-clean": "0.5.0",
+    "grunt-contrib-compress": "0.9.1",
+    "grunt-contrib-concat": "0.4.0",
+    "grunt-contrib-copy": "0.5.0",
+    "grunt-contrib-jshint": "0.10.0",
+    "grunt-contrib-less": "0.11.0",
+    "grunt-css2js": "0.2.4",
+    "grunt-sed": "0.1.1",
+    "load-grunt-tasks": "0.4.0"
+  },
+  "devDependencies": {
+    "grunt-contrib-compress": "^0.9.1",
+    "grunt-contrib-uglify": "^0.6.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-exec": "0.4.5",
+    "grunt-mozilla-addon-sdk": "0.3.2"
+  },
+  "optionalDependencies": {
+    "grunt-contrib-qunit": "0.2.1",
+    "grunt-contrib-watch": "0.6.1",
+    "grunt-release": "0.7.0",
+    "jshint-stylish": "0.2.0"
+  }
+}
