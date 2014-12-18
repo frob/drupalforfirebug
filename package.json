@@ -1,8 +1,8 @@
 {
-  "name": "DrupalForFirebug",
+  "name": "drupalforfirebug",
   "title": "DrupalForFirebug",
   "description": "Drupal for Firebug Extension. Original author: Matt Cheney (populist).",
-  "version": "2.2",
+  "version": "2.2.1",
   "homepage": "http://drupal.org/project/DrupalForFirebug",
   "author": {
     "name": "Frank Anderson",
@@ -29,7 +29,10 @@
       "url": "https://github.com/frob/drupalforfirebug/blob/2.x/LICENSE-GPL-2.0"
     }
   ],
-  "keywords": ["drupal", "development"],
+  "keywords": [
+    "drupal",
+    "development"
+  ],
   "engines": {
     "node": ">= 0.8.0"
   },
@@ -51,7 +54,7 @@
     "grunt-contrib-uglify": "^0.6.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-exec": "0.4.5",
-    "grunt-mozilla-addon-sdk": "0.3.2"
+    "grunt-mozilla-addon-sdk": "^0.3.2"
   },
   "optionalDependencies": {
     "grunt-contrib-qunit": "0.2.1",

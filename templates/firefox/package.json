@@ -1,0 +1,11 @@
+{
+  "name": "%PKG.NAME%",
+  "title": "%PKG.TITLE%",
+  "id": "%PKG.NAME%@%PKG.NAME%.org",
+  "homepage": "%PKG.HOMEPAGE%",
+  "description": "%PKG.DESCRIPTION%",
+  "author": "%PKG.AUTHOR%",
+  "license": "%PKG.LICENSE%",
+  "version": "%PKG.VERSION%",
+  "main": "bootstrap.js"
+}
