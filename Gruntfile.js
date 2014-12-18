@@ -128,4 +128,33 @@ module.exports = function(grunt) {
   grunt.registerTask('default', ['clean', 'copy', 'sed']);
   grunt.registerTask('release', ['clean', 'copy', 'sed', 'compress']);
   grunt.registerTask('build', 'Builds the Firefox extension.', ['mozilla-cfx-xpi']);
+
+  // Autoload tasks.
+  // Firefox.
+  // @see https://addons.mozilla.org/en-US/firefox/addon/autoinstaller/
+  grunt.registerTask('autoload', 'Loads the XPI extension into Firefox.', function () {
+    var done = this.async();
+    var xpi = 'release/' + grunt.template.process('<%= pkg.name %>-<%= pkg.version %>.xpi');
+    grunt.util.spawn({
+      cmd: 'wget',
+      args: [
+        '--post-file=' + xpi,
+        'http://localhost:8888'
+      ],
+      opts: !grunt.option('debug') ? {} : {
+        stdio: 'inherit'
+      }
+    },
+    function (error, result, code) {
+      if (code !== 8) {
+        return grunt.warn('Auto-loading ' + xpi + ' failed:\n\n' +
+          code + ': ' + error + '\n\n' +
+          'Ensure you have the AutoInstaller extension installed in Firefox:\n' +
+          'https://addons.mozilla.org/en-US/firefox/addon/autoinstaller/\n\n'
+        );
+      }
+      grunt.log.ok('Auto-loaded ' + xpi + ' into Firefox.');
+      done();
+    });
+  });
 };
