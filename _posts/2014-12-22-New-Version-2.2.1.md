@@ -20,3 +20,5 @@ I took a look at the Dreditor extension's workflow and saw that they where using
 ### Move to github
 
 More to come...
+
+Example
